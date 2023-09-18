@@ -82,7 +82,7 @@
 + EDA (Electronic Design Automation) tools are a set of software applications and tools used by electronics engineers and integrated circuit (IC) designers to design, simulate, verify, and analyze electronic circuits and systems.
 + These tools are essential for designing complex electronic devices, ranging from simple integrated circuits to advanced microprocessors and systems-on-chip (SoCs).
 <p align="center">
-  <img width="500" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/d85acaf4-3187-4b31-a87c-0e392d572ccd">
+  <img width="500" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/42cc68bb-4582-4e15-a96f-9b67f0e601e7">
 </p>
 
 **130nm**
@@ -93,7 +93,7 @@
 
 **RTL to GDSII**
 <p align="center">
-<img width="500" alt="image" src= "https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/e8434b0b-5086-4193-85ae-cf8280ad3749">
+<img width="500" alt="image" src= "https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/9b483c18-0a1e-4121-8a6c-8b6f29e94104">
 </p>
 
 + **Synthesis**
@@ -134,17 +134,13 @@ During the detailed placement phase, the positions of individual components, suc
 
 + **Strive Chipsets**
 <p align="center">
-  <img width="239" alt="image" src="https://github.com/Veda1809/pes_pd/assets/142098395/2758ce5f-9301-4876-929e-72d93de298f6">
+  <img width="250" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/e03187bf-95fd-4418-85a8-0963320b1dad">
 </p>
 
 ### Introduction to OpenLane Detailed ASIC Design Flow 
 
 <p align="center">
-  <img width="600" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/cfe88578-4abc-4de1-833e-134b738f684c">
-</p>
-
-<p align="center">
-  Fig 3. OpenLane ASIC Flow
+  <img width="600" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/7be28c34-a1bf-4921-a864-52952fc28953">
 </p>
 
 + **OpenLane Regression Testing**
@@ -198,7 +194,7 @@ During the detailed placement phase, the positions of individual components, suc
 
 PDK used in this workshop is Skywater 130nm PDK and OpenLane is built around this PDK.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/6319ad92-6b2e-4949-afc1-24573f64b01e)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/d74d57f7-520d-47ea-9771-d9b1cd708e80)
 
 **skywater-pdk** contains all the PDK related files.
 
@@ -206,43 +202,43 @@ PDK used in this workshop is Skywater 130nm PDK and OpenLane is built around thi
 
 **sky130A** is made compatible with our open-source environment.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/15e59640-5dac-4d06-8246-6cc7126c2666)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/6007280a-abca-43d3-a80f-d3d716e9ee5c)
 
 **libs.ref** seems specific to technology.
 
 **libs.tech** seems specific to the tool.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/cc6d7f85-e28b-4512-ad81-cfec7064caea)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/f01b996e-0561-4ca9-b210-ba34e66b2b84)
 
 **sky130_fd_sc_hd** has all the technology files.
 ### Design Preparation Step 
 To invoke OpenLane
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/3d3b7b70-4235-4551-b1d1-7e2b5d9148c6)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/1be3ac80-5f19-49e2-8d90-fb3be8973885)
 
 Under **Designs** folder, we are going to use **picorv32a**.
 
 **src** files contains verilog and sdc file.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/a7672428-37d5-4473-a0b2-2333abe85506)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/f5433821-94c2-4729-8027-18dda8d2a583)
 
 We are going to prepare the design `prep -design picorv32a`.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/70ab006e-f9df-42d9-b373-3e5d9623d1b3)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/5eeebfb8-73a0-4597-92bd-a3b5d5d0dc82)
 
 After Design Preparation, we will run the Synthesis:
 - `run_synthesis` command use to run the synthesis
 - Yosys-Perform RTL Simulation abc-It performs technology mapping and the netlist is created. Open STA-Perform static timing analysis after synthesis.
 - This will execute both yosys and abc pass will be done
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/8644c883-e899-47a2-9515-037d542e8d23)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/e6d173a7-b604-4197-ac70-87b5cbc59a39)
 
 ### Characterize Synthesis Results 
 - Number of D Flip-Flops = 1613
 - Number of Cells = 14876
 clock ratio = 1613/14876=0.1084 or 10.84 percent
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/f95fd189-68f7-49c9-a3ec-81def6bce54a)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/4c13d10d-befd-4d3c-8c72-4ff6a1aaef50)
 
 # Day-2
 # Floor planning and introduction to library cells
@@ -250,7 +246,7 @@ clock ratio = 1613/14876=0.1084 or 10.84 percent
 ### Utilisation Factor and Aspect Ratio 
 **Utilization factor:** Utilization factor is a measure of how efficiently a system or component is being used, often expressed as a ratio or percentage. It is relevant in areas such as lighting design, heat exchangers, and telecommunications.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/fb485a18-965d-4bb3-8cfe-ae6e13bdfb64)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/6c0d4743-4852-4cae-9064-9d6f3f874a1f)
 
 **Aspect ratio** Aspect ratio is a dimensionless quantity describing the proportion of an object's width to its height. It is used in fields like architecture, aerodynamics, and screen display ratios.
 
@@ -282,14 +278,14 @@ Decoupling capacitors, often called decaps, are vital electronic components used
 
 Width of the die=660685/1000=660.685 micron Heigth of the Die=671405/1000=671.405 micron Area=Width*Height=443587.212 square microns
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/0adcbc97-87e7-4270-9ae3-c3f74fd083d9)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/44e92867-a621-43aa-84d1-dc903f90ef46)
 
 ## Review Floorplan Layout in Magic 
   
  ```
  magic -T /home/rohith_nagesh/ASIC/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/fb3883ea-f214-4984-aea0-e93a702c79db)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/94d8ea42-ed3d-432e-b93c-7f36bd11b9b0)
 
 ## Library Binding and Placement
 ### Netlist Binding and Initial Place Design 
@@ -298,15 +294,13 @@ Width of the die=660685/1000=660.685 micron Heigth of the Die=671405/1000=671.40
 + Netlist binding is a crucial step in the process of transforming a high-level design description into a representation that can be physically implemented on a chip or printed circuit board (PCB).
 + This step involves associating the logical components and connections described in the netlist with physical components, such as gates, flip-flops, and interconnections, that will be used in the actual implementation.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/359638d8-0db4-4fbe-b29c-1e238552ebac)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/5835a2c1-4ce5-4841-af34-5f7457f53f9e)
 
 ## Optimise Placement using Estimated Wire-Length and Capacitance 
 
 + We need to estimate the wire length and capacitance, and based on that insert repeaters.
 
-<p align="center">
-  <img alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/ba3d121c-4392-4fb4-a2ad-11bee32c9bb5">
-</p>
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/a306271b-a1f5-4927-9a6e-2963e5d932c5)
 
 ### Need for Libraries and Characterization 
 
@@ -319,7 +313,7 @@ Width of the die=660685/1000=660.685 micron Heigth of the Die=671405/1000=671.40
 
 `run_placement` command use to run the placement
 <p align="center">
-<img alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/22e258de-b842-4d2f-a949-c3da6b139a4e">
+<img alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/900d1552-cc1b-4fd2-942d-b02fe3d9322f">
 </p>
 
 
@@ -327,14 +321,14 @@ Width of the die=660685/1000=660.685 micron Heigth of the Die=671405/1000=671.40
 magic -T /home/rohith_nagesh/ASIC/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/67569ed9-206f-42ef-a16c-ebc50c0f7a13)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/b0690855-a828-4ab7-b5f8-aeda6e656bbf)
 
 ## Cell Design and Characterization Flows
 ### Inputs for Cell Design Flow 
 
 **Cell Design Flow**
 <p align="center">
-  <img img width="500" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/7f8c23a8-12ee-4bdd-8128-f55a235aea11">
+  <img img width="500" alt="image" src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/63537911-1b47-4eca-b59a-9275f026d519">
 </p>
 
 **Inputs:**
@@ -426,7 +420,7 @@ magic -T /home/rohith_nagesh/ASIC/work/tools/openlane_working_dir/pdks/sky130A/l
   % run_floorplan`
   ```
 + We can see that they are no more equidistant.
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/49e8f4cb-46de-43c3-8cc1-f5bb34dd0efa)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/6e79d74e-c775-434a-9412-47e8fbcdd47e)
 
 
 ## SPICE Deck Creation for CMOS Inverter  
