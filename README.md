@@ -479,7 +479,7 @@ Vin in 0 2.5
 git clone https://github.com/nickson-jose/vsdstdcelldesign.git
 cp sky130A.tech /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
 ```
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/91ae90ad-5a6d-4f2a-a53e-1d345e84e6d6)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/f3df0a3f-8702-4da1-aed3-6ce75dee149c)
 
 ## Inception of Layout and CMOS fabrication process
 **Fabrication of CMOS is a 16 Mask process.**
@@ -552,7 +552,7 @@ cp sky130A.tech /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/v
 - An aluminum (Al) layer is added and subjected to photolithography and CMP.
 - Deposit a layer of Si3N4 that acts as dielectric to protect the chip.
 <p align="center">
- <img width=400 alt=image src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/c0559acd-7ca0-4342-b8ba-953455ac0592">
+ <img width=400 alt=image src="https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/4e37fad3-149d-4705-b7d8-c19fc43158de">
 </p>
 
 ### Lab Introduction to Sky130 Basic Layers Layout and LEF using Inverter
@@ -561,15 +561,15 @@ cp sky130A.tech /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/v
 cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
 magic -T sky130A.tech sky130_inv.mag
 ```
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/1bd18ea2-c8c5-4714-bbdd-5f069d100603)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/d93ea89d-97c1-4995-b92e-92db39145eba)
 
 Select a region from the layout by placing cursor on that point and pressing `s`, Now go to the console and type `what` to display the information of selected area
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/25c5912e-c75d-4cd8-9a33-5a84cbfe2fe5)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/4646050f-7558-4efb-a903-1895768febad)
 
 ### Lab Steps to Create std cell Layout and Extract SPICE Netlist
 To check for DRC Errors, select a region (left click for starting point, right click at end point) and see the DRC column at the top that shows how many DRC errors are present.The Details of DRC Errors will be printed on the console.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/2d1fef45-8fa3-45e2-834c-e1eed6b0b16c)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/70293616-0790-41ee-af3f-182d8f7deafa)
 
 For more information on DRC errors plase refer to: [DRC_Erros](https://skywater-pdk--136.org.readthedocs.build/en/136/)
 For more information on how to fix these DRC errors using Magic please refer to: [fix_DRC](http://opencircuitdesign.com/magic/)
@@ -583,27 +583,27 @@ ext2spice
 
 cthresh and rthresh are used to extract all parasatic capacitances.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/d8704d87-d0fa-4ab7-ba99-476d89384fe0)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/7ed1ca91-52ff-4d58-9aeb-1210ed0735fd)
 
 We can see that the spice file is created in the folder.
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/9b42a949-8482-417e-99f5-9a8ebea101df)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/b6b9a782-efb0-436f-855c-4667b5ae6871)
 
 ### Spice netlist
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/9823f82f-1953-47a3-8ba3-189652e9aa1b)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/319dae40-aa9d-4ea5-a933-d5c4d61bff37)
 
 ## Sky130 Tech File Labs
 ### Grid size.
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/736ee417-95d5-474a-94b2-02261f032412)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/ae519e2a-e9b3-4929-a100-eb360b049180)
 
 ### Modified Spice netlist
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/c5092093-91c0-4282-a918-b733bba6986a)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/55c80866-d266-4ada-9e12-1ff0f06bdcb5)
 
 ```
 ngspice sky130_inv.spice
 plot y vs time a
 ```
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/0b2eaf20-94b2-4770-a9a1-3384ad9affbf)
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/4040e607-b1ad-4f38-9a0f-f411769f3bd1)
 
 ### Introduction to Magic Options and DRC rules
 **Magic**
@@ -634,6 +634,7 @@ From PnR POV, We have to follow certain guidelines to get standard cell set
 
 Track info can be found at : `/home/rohith_nagesh/ASIC/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd
 /tracks.info`
+
 **tracks.info**
 ```
 li1 X 0.23 0.46
@@ -652,15 +653,13 @@ met5 Y 1.70 3.40
 1st value indicates the offset and 2nd value indicates the pitch along provided direction
 
 ### Setting grid values using above file info
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/80cf8ade-c990-454b-bfb2-eec981a59931)
+img
 
 Layout before setting grid info vs after setting grid info
 
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/6e316d00-1cd5-48b4-80bf-2dd35c41ebd5)
-
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/80a786ff-90c7-413d-b7e9-8cb7de9c3cc9)
-
-![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/b57e40f1-db32-46b4-8148-da280187ed55)
+img
+img
+img
 
 - From the above pic, its confirmed that the pins A and Y are at the intersection of X and Y tracks. So the first condition is met.
 - The PR boundary is taking 3 grids on width and 9 grids on height which says that the 2nd condition is also met
