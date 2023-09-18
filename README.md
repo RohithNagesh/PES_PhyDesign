@@ -760,31 +760,99 @@ Design Synopsys design constraint (.sdc) files - Industry standard constraints f
 + Designers may make adjustments to the design and rerun timing analysis to ensure that the design meets its timing constraints.
 
 ## Timing analysis with ideal clocks using openSTA
+### Configure OpenSTA for Post-Synth Timing Analysis
+We must create two files.
+  1. **pre_sta.conf** in the openlane directory
+  2. **my_base.sdc** in the src directory under the picorv32a directory
 
+**pre_sta.conf**
 
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/bac94146-3244-4e0c-a169-4b6a76c7a583)
 
+**my_base.sdc** 
 
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/9b767333-e13e-4c70-ad12-2b08ce575561)
 
+Use the command `sta pre_sta.conf` to run the timing analysis 
 
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/56477253-1785-4e02-8494-7e5135ac4c5d)
 
+<p align="center">
+  There is a slack violation.
+</p>
 
+### Optimise synthesis
++ Setting MAX_FANOUT value to 4 reduces the slack violation.
++ `set ::env(SYNTH_MAX_FANOUT) 4`
++ Then `run_synthesis`
 
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/cc9a0e3e-e86c-4e55-a9ca-9a7536acb0c0)
 
++ Since we have synthesised the core using our vsdinv cell too and as it got successfully synthesized, it should be visible in layout after `run_placement` stage which is followed after `run_floorplan` stage.
 
-
-
-
-
-
-
-
-
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/e1a89d1a-dc46-451e-b21b-120e3cc37f79)
 
 ## Clock tree synthesis TritonCTS and signal integrity
+### CTS
+- Run the command `run_cts` to run CTS
+- picorv32a.synthesis_cts.v is created 
+
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/e41008c1-def4-4f95-9c63-3aac65867ac8)
+
 ## Timing analysis with real clocks using openSTA
+### Lab steps to analyse Timing with Real CLocks
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/18-09_14-09/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/18-09_14-09/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/18-09_14-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty -max $::env(LIB_SLOWEST)
+read_liberty -max $::env(LIB_FASTEST)
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+```
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/ed84d729-2ca8-4023-b556-755a46167905)
+
+```
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+![image](https://github.com/RohithNagesh/PES_PhyDesign/assets/103078929/4802307e-7a38-484d-ba9e-7fa3c831f784)
 
 # DAY 5
 # Final steps for RTL2GDS using tritonRoute and openSTA
 ## Routing and design rule check (DRC)
+### Maze routing
+Maze routing is a technique used in electronic design to efficiently connect components on a chip's layout. Lee's algorithm, also known as Lee's BFS algorithm, is a popular method for finding the shortest path in a grid-based maze by exploring it layer by layer.
+
+### DRC
+- DRC stands for "Design Rule Checking." It is a crucial step in the integrated circuit (IC) design and electronic design automation (EDA) process. DRC involves verifying that the layout of a semiconductor device or IC adheres to the specified design rules and constraints.
+
+- These design rules are a set of guidelines and constraints defined by semiconductor manufacturers and design teams to ensure the proper functioning of the chip and its manufacturability. DRC checks for violations of these rules, which can include criteria related to minimum feature size, spacing between components, wire widths, and other physical and electrical properties.
+
+- By performing DRC, designers can identify and rectify potential issues early in the design process, helping to prevent costly errors and ensuring that the final IC design meets the required specifications and can be successfully manufactured.
+
 ## Power Distribution Network and routing
+### Power Distribution Network
+Once we've created our clock tree network and confirmed the successful post-routing STA checks, the next step is to proceed with generating the power distribution network.
+
++ The PDN feature within OpenLANE will create:
+   - Power ring global to the entire core
+   - Power halo local to any preplaced cells
+   - Power straps to bring power into the center of the chip
+   - Power rails for the standard cells
++ We see that there is a change in the DEF.
+
+### Global and Detailed Routing 
++ OpenLANE uses TritonRoute as the routing engine for physical implementations of designs. Routing consists of two stages:
+   - Global Routing - Routing guides are generated for interconnects on our netlist defining what layers, and where on the chip each of the nets will be reputed.
+   - Detailed Routing - Metal traces are iteratively laid across the routing guides to physically implement the routing guides.
+
++ To run routing in OpenLANE:
+  `run_routing`
++ If DRC errors persist after routing the user has two options:
+  - Re-run routing with higher QoR settings.
+  - Manually fix DRC errors specific in tritonRoute.drc file.
+
 ## TritonRoute Features
